@@ -10,8 +10,15 @@ let
       rev = "159";
       sha256 = "sha256-20nrI+XICdYGgsydFP7DM/zMMcOMBCHz8JZUM10IOmc=";
       };
+    nativeBuildInputs = [oldAttrs.nativeBuildInputs autoconf automake];
+    preConfigure = ''
+      ./bootstrap
+    '';
+    configurePhase = ''
+      ./configure
+    '';
     installPhase = ''
-      make install-strip
+      make install-strip \
     '';
     });
   pepito = callPackage jtdxHamlib {};
